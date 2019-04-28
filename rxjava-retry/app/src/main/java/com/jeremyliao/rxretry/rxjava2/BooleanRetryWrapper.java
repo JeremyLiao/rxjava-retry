@@ -1,6 +1,7 @@
-package com.jeremyliao.rxjava_retry;
+package com.jeremyliao.rxretry.rxjava2;
 
-import rx.Observable;
+
+import io.reactivex.Observable;
 
 /**
  * Created by liaohailiang on 2018/8/10.

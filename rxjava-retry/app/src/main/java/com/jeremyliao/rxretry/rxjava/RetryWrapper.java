@@ -1,4 +1,4 @@
-package com.jeremyliao.rxjava_retry;
+package com.jeremyliao.rxretry.rxjava;
 
 import rx.Observable;
 import rx.functions.Action1;

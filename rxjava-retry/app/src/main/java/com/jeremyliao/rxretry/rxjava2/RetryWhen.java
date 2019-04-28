@@ -1,17 +1,19 @@
-package com.jeremyliao.rxjava_retry;
+package com.jeremyliao.rxretry.rxjava2;
 
 import android.util.Pair;
 
 import java.util.concurrent.TimeUnit;
 
-import rx.Observable;
-import rx.functions.Func1;
-import rx.functions.Func2;
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.functions.BiFunction;
+import io.reactivex.functions.Function;
+
 
 /**
  * Created by liaohailiang on 2018/8/10.
  */
-public class RetryWhen implements Func1<Observable<? extends Throwable>, Observable<?>> {
+public class RetryWhen implements Function<Observable<Throwable>, ObservableSource<?>> {
 
     private final int retryTimes;
     private final int delayMillis;
@@ -22,17 +24,17 @@ public class RetryWhen implements Func1<Observable<? extends Throwable>, Observa
     }
 
     @Override
-    public Observable<?> call(Observable<? extends Throwable> observable) {
+    public ObservableSource<?> apply(Observable<Throwable> observable) throws Exception {
         return observable.zipWith(Observable.range(1, retryTimes),
-                new Func2<Throwable, Integer, Pair<Integer, Throwable>>() {
+                new BiFunction<Throwable, Integer, Pair<Integer, Throwable>>() {
                     @Override
-                    public Pair<Integer, Throwable> call(Throwable throwable, Integer integer) {
+                    public Pair<Integer, Throwable> apply(Throwable throwable, Integer integer) throws Exception {
                         return Pair.create(integer, throwable);
                     }
                 })
-                .flatMap(new Func1<Pair<Integer, Throwable>, Observable<?>>() {
+                .flatMap(new Function<Pair<Integer, Throwable>, ObservableSource<?>>() {
                     @Override
-                    public Observable<?> call(Pair<Integer, Throwable> pair) {
+                    public ObservableSource<?> apply(Pair<Integer, Throwable> pair) throws Exception {
                         if (pair.first < retryTimes) {
                             return Observable.timer(delayMillis, TimeUnit.MILLISECONDS);
                         } else {

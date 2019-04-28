@@ -1,13 +1,6 @@
-package com.jeremyliao.rxjava_retry;
+package com.jeremyliao.rxretry.rxjava;
 
-import android.databinding.DataBindingUtil;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.Toast;
-
-
-import com.jeremyliao.rxjava_retry.databinding.ActivityRxjavaDemoBinding;
 
 import java.util.Random;
 
@@ -17,18 +10,10 @@ import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
-public class RxJavaDemo extends AppCompatActivity {
+public class RxJavaRetryDemo {
 
-    private ActivityRxjavaDemoBinding binding;
     private int executeTimes = 0;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_rxjava_demo);
-        binding.setHandler(this);
-        binding.setLifecycleOwner(this);
-    }
 
     public void testRetry1() {
         retry1();
@@ -74,7 +59,7 @@ public class RxJavaDemo extends AppCompatActivity {
                 });
     }
 
-    private void retry1() {
+    public void retry1() {
         executeTimes = 0;
         new BooleanRetryWrapper(sourceMayFail())
                 .retry(3)
@@ -83,21 +68,17 @@ public class RxJavaDemo extends AppCompatActivity {
                 .subscribe(new Action1<Boolean>() {
                     @Override
                     public void call(Boolean aBoolean) {
-                        Toast.makeText(RxJavaDemo.this, "testRetry complete: " + aBoolean,
-                                Toast.LENGTH_SHORT).show();
                         Log.d("test", "testRetry complete: " + aBoolean);
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        Toast.makeText(RxJavaDemo.this, "testRetry error: " + throwable.toString(),
-                                Toast.LENGTH_SHORT).show();
                         Log.d("test", "testRetry error: " + throwable.toString());
                     }
                 });
     }
 
-    private void retry2() {
+    public void retry2() {
         executeTimes = 0;
         sourceMayFailThrow()
                 .retryWhen(new RetryWhen(3, 500))
@@ -106,15 +87,11 @@ public class RxJavaDemo extends AppCompatActivity {
                 .subscribe(new Action1<Integer>() {
                     @Override
                     public void call(Integer integer) {
-                        Toast.makeText(RxJavaDemo.this, "testRetry complete: " + integer,
-                                Toast.LENGTH_SHORT).show();
                         Log.d("test", "testRetry complete: " + integer);
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        Toast.makeText(RxJavaDemo.this, "testRetry error: " + throwable.toString(),
-                                Toast.LENGTH_SHORT).show();
                         Log.d("test", "testRetry error: " + throwable.toString());
                     }
                 });
