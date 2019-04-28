@@ -10,12 +10,12 @@
 - 失败的时候抛出RuntimeException，以onError结束，如Retrofit网络请求
 - 失败只是一个结果，不会抛出RuntimeException，最后会以onComplete结束
 
-### 抛出RuntimeException的场景
+### 不抛出RuntimeException的场景
 我们提供[RetryWrapper](https://github.com/JeremyLiao/rxjava-retry/blob/master/rxjava-retry/app/src/main/java/com/jeremyliao/rxjava_retry/RetryWrapper.java)进行处理
 
 特别的，如果流程以Boolean返回标识成功或者失败，我们提供了[BooleanRetryWrapper](https://github.com/JeremyLiao/rxjava-retry/blob/master/rxjava-retry/app/src/main/java/com/jeremyliao/rxjava_retry/BooleanRetryWrapper.java)进行处理
 
-### 不抛出RuntimeException的场景
+### 会抛出RuntimeException的场景
 我们提供[RetryWhen](https://github.com/JeremyLiao/rxjava-retry/blob/master/rxjava-retry/app/src/main/java/com/jeremyliao/rxjava_retry/RetryWhen.java)进行处理
 
 ## Demo
