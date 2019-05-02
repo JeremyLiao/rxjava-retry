@@ -10,13 +10,19 @@
 - 失败的时候抛出RuntimeException，以onError结束，如Retrofit网络请求
 - 失败只是一个结果，不会抛出RuntimeException，最后会以onComplete结束
 
-### 不抛出RuntimeException的场景
-我们提供[RetryWrapper](https://github.com/JeremyLiao/rxjava-retry/blob/master/rxjava-retry/app/src/main/java/com/jeremyliao/rxjava_retry/RetryWrapper.java)进行处理
+#### 不抛出RuntimeException的场景
+提供[RetryWrapper](rxjava-retry/app/src/main/java/com/jeremyliao/rxretry/rxjava/RetryWrapper.java)进行处理
 
-特别的，如果流程以Boolean返回标识成功或者失败，我们提供了[BooleanRetryWrapper](https://github.com/JeremyLiao/rxjava-retry/blob/master/rxjava-retry/app/src/main/java/com/jeremyliao/rxjava_retry/BooleanRetryWrapper.java)进行处理
+特别的，如果流程以Boolean返回标识成功或者失败，我们提供了[BooleanRetryWrapper](rxjava-retry/app/src/main/java/com/jeremyliao/rxretry/rxjava/BooleanRetryWrapper.java)进行处理
 
-### 会抛出RuntimeException的场景
-我们提供[RetryWhen](https://github.com/JeremyLiao/rxjava-retry/blob/master/rxjava-retry/app/src/main/java/com/jeremyliao/rxjava_retry/RetryWhen.java)进行处理
+#### 会抛出RuntimeException的场景
+提供[RetryWhen](rxjava-retry/app/src/main/java/com/jeremyliao/rxretry/rxjava/RetryWhen.java)进行处理
+
+### 提供了rxjava和rxjava2的版本
+#### for rxjava
+[for rxjava](rxjava-retry/app/src/main/java/com/jeremyliao/rxretry/rxjava)
+#### for rxjava2
+[for rxjava2](rxjava-retry/app/src/main/java/com/jeremyliao/rxretry/rxjava2)
 
 ## Demo
 ### 定义source
@@ -114,5 +120,5 @@ private void retry2() {
 ```
 Demo代码：
 
-[RxJavaDemo](https://github.com/JeremyLiao/rxjava-retry/blob/master/rxjava-retry/app/src/main/java/com/jeremyliao/rxjava_retry/RxJavaDemo.java)
+[RxJavaDemo](rxjava-retry/app/src/main/java/com/jeremyliao/rxretry/rxjava/RxJavaRetryDemo.java)
 
