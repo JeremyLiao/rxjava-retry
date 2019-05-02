@@ -5,8 +5,7 @@
 ## OverView
 我们希望对RxJava失败的场景进行重试
 
-### RxJava的流程失败一般有两种：
-
+### RxJava的流程失败一般有两种场景：
 - 失败的时候抛出RuntimeException，以onError结束，如Retrofit网络请求
 - 失败只是一个结果，不会抛出RuntimeException，最后会以onComplete结束
 
@@ -15,14 +14,13 @@
 
 特别的，如果流程以Boolean返回标识成功或者失败，我们提供了[BooleanRetryWrapper](rxjava-retry/app/src/main/java/com/jeremyliao/rxretry/rxjava/BooleanRetryWrapper.java)进行处理
 
-#### 会抛出RuntimeException的场景
+#### 抛出RuntimeException的场景
 提供[RetryWhen](rxjava-retry/app/src/main/java/com/jeremyliao/rxretry/rxjava/RetryWhen.java)进行处理
 
 ### 提供了rxjava和rxjava2的版本
-#### for rxjava
-[for rxjava](rxjava-retry/app/src/main/java/com/jeremyliao/rxretry/rxjava)
-#### for rxjava2
-[for rxjava2](rxjava-retry/app/src/main/java/com/jeremyliao/rxretry/rxjava2)
+[rxjava-retry for rxjava](rxjava-retry/app/src/main/java/com/jeremyliao/rxretry/rxjava)
+
+[rxjava-retry for rxjava2](rxjava-retry/app/src/main/java/com/jeremyliao/rxretry/rxjava2)
 
 ## Demo
 ### 定义source
